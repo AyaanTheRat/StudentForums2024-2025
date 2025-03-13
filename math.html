@@ -73,16 +73,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     const messagesRef = collection(db, "messages");
 
     // Send Message
-    async function sendMessage() {
-        const messageInput = document.getElementById("messageInput");
-        if (messageInput.value.trim() !== "") {
+async function sendMessage() {
+    const messageInput = document.getElementById("messageInput");
+    console.log("Button clicked! Message:", messageInput.value); // Debugging step
+
+    if (messageInput.value.trim() !== "") {
+        try {
             await addDoc(messagesRef, {
                 text: messageInput.value,
                 timestamp: new Date()
             });
+            console.log("Message sent successfully!");
             messageInput.value = "";
+        } catch (error) {
+            console.error("Error sending message:", error);
         }
+    } else {
+        console.warn("Empty message, not sending.");
     }
+}
+
 
     // Listen for new messages
     onSnapshot(query(messagesRef, orderBy("timestamp")), (snapshot) => {
