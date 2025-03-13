@@ -43,72 +43,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <p class="w3-xlarge">Grade 6 - Ms. Fisher / Ms. Kelly (2024 / 2025)</p>
 </header>
 
-<!-- Chatroom Section -->
-<div class="w3-container w3-center w3-padding-64">
-    <h2>Live Chat</h2>
-    <div id="messages" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll;"></div>
-    <input type="text" id="messageInput" class="w3-input w3-border" placeholder="Type a message">
-    <button onclick="sendMessage()" class="w3-button w3-red w3-margin-top">Send</button>
-</div>
-
-<!-- Firebase SDK -->
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
-
-    // 🔥 Replace with your actual Firebase Config
-    const firebaseConfig = {
-        apiKey: "AIzaSyBb0qLael0G2SQvAyA800lwp4D62kLU0Kg",
-        authDomain: "student-forums-math-2024-2025.firebaseapp.com",
-        projectId: "student-forums-math-2024-2025",
-        storageBucket: "student-forums-math-2024-2025.firebasestorage.app",
-        messagingSenderId: "364843208370",
-        appId: "1:364843208370:web:11e63b1b2a95e0f92383ab"
-        measurementId: "G-TGGZ3T0R28"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const messagesRef = collection(db, "messages");
-
-    // Send Message
-async function sendMessage() {
-    const messageInput = document.getElementById("messageInput");
-    console.log("Button clicked! Message:", messageInput.value); // Debugging step
-
-    if (messageInput.value.trim() !== "") {
-        try {
-            await addDoc(messagesRef, {
-                text: messageInput.value,
-                timestamp: new Date()
-            });
-            console.log("Message sent successfully!");
-            messageInput.value = "";
-        } catch (error) {
-            console.error("Error sending message:", error);
-        }
-    } else {
-        console.warn("Empty message, not sending.");
-    }
-}
-
-
-    // Listen for new messages
-    onSnapshot(query(messagesRef, orderBy("timestamp")), (snapshot) => {
-        const messagesDiv = document.getElementById("messages");
-        messagesDiv.innerHTML = "";
-        snapshot.docs.forEach((doc) => {
-            const message = document.createElement("p");
-            message.textContent = doc.data().text;
-            messagesDiv.appendChild(message);
-        });
-        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll to latest message
-    });
-</script>
+<center>
+  <embed src="https://tlk.io/784711" style="width:500px; height: 300px;">
+</center>
 
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day: "Success is the sum of small efforts, repeated day in and day out." – Robert Collier</h1>
+    <h1 class="w3-margin w3-xlarge">Quote of the day: It's never too late</h1>
 </div>
 
 <!-- Footer -->
